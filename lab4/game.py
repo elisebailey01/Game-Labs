@@ -190,11 +190,17 @@ def menu(exits):
         print_menu(exits)
         user_input = input()
         normalise_exit = normalise_input(user_input)
-        for exit in exits:
-            if is_valid_exit(exit, normalise_exit):
-                return normalise_exit
-            else:
-                print("You have entered an invalid choice")
+        invalid = False
+        if len(normalise_exit) > 0:
+            for exit in exits:
+                if is_valid_exit(exit, normalise_exit):
+                    return normalise_exit
+                else:
+                    invalid = True
+        else:
+            invalid = True
+        if invalid:
+                print("You have entered an invalid choice.")
         # COMPLETE THIS PART:
         
         # Display menu
